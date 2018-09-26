@@ -36,26 +36,42 @@
 
 	<script type="text/javascript">
 
-		var noeud = document.getElementById("popup");	// var globale
+		var noeud = null;
+		// var noeud = document.getElementById("popup");	// var globale
+		// Ce code est interprété "à la volée"
+		// Le navigateur ne connait pas le popup d'id "popup"
+		// La fonction getElement... renvoie null
 
-		// ne marche pas... pourquoi ? 
+		// ne marche pas... pourquoi ?
+		// Erreur ffox : noeud is null
+		// Erreur chrome : Uncaught TypeError: Cannot read property 'style' of null
 
-		function afficher_popup()
-		{			
+		// solution :
+		// 1) onload="init()" dans body
+		// Evenement load : fin du chargement de la page par le navigateur
+
+		// 2) appels à getElementById dans chaque fonction
+		// 3) placer ce code tout en bas de la page
+
+		function afficher_popup() {
 			noeud.style.display = "block";
 		}
 
-		function cacher_popup()
-		{
+		function cacher_popup() {
 			noeud.style.display = "none";
 		}
+
+		function init(){
+			// SURTOUT PAS DE var noeud ICI !!
+            noeud = document.getElementById("popup");
+        }
 	</script>
 
 </head>
 <!-- **** F I N **** H E A D **** -->
 
 <!-- **** B O D Y **** -->
-<body>
+<body onload="init();">
 
 	avant 1
 	<div>Paragraphe 1 par défaut</div>
