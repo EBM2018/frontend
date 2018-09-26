@@ -15,6 +15,7 @@ packages
 .jshintrc
 .eslintrc.json
 error_log
+.DS_STORE
 
 # Homestead conf
 after.sh
