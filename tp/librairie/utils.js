@@ -28,6 +28,7 @@ Utils.$ = function (string) {
 Utils.isHTMLElement = function (element) {
   return element && element.nodeType
 }
+// if this function receives a selector, it will return the *first* match in the document
 Utils.getElement = function (selectorOrElement) {
   let domElement
   if (this.isHTMLElement(selectorOrElement)) {
