@@ -33,7 +33,6 @@
 				background-color:yellow;
 		}
 
-		#btn_cacher {display:none;}
 	</style>
 
 	<script type="text/javascript">
@@ -58,25 +57,31 @@
 		// 2) appels à getElementById dans chaque fonction
 		// 3) placer ce code tout en bas de la page
 
-		//TODO: Afficher et cacher tour à tour les boutons pour qu'il n'y en ait toujours qu'un seul visible à la fois.
+		//TODO: Supprimer un bouton et modifier le code pour que le même bouton puisse servir à cacher/afficher. Utiliser le mot-clé « this ».
 
-		function afficher_popup() {
-			noeud.style.display = "block";
-            refBtnAfficher.style.display = "none";
-            refBtnCacher.style.display = "block";
+		function toggle_popup(refBtn) {
+
+		    // SI le popup est caché
+			// On peut tester le label du bouton
+			// OU la propriété style.display du popup
+
+			// NB : les propiétés CSS du document ne sont pas toutes propagées dans le DOM
+			// Par exemple, ici au chargement de la page, la propriété noeud.style.display vaut ""
+
+			// if (noeud.style.display != "block" ) {
+            if (refBtn.value == "Afficher popup" ) {
+                noeud.style.display = "block"; // On affiche
+                refBtn.value = "Cacher popup"; // on change le label
+            } else {
+                noeud.style.display = "none"; // On affiche
+                refBtn.value = "Afficher popup"; // on change le label
+			}
+
         }
-
-		function cacher_popup() {
-			noeud.style.display = "none";
-            refBtnAfficher.style.display = "block";
-            refBtnCacher.style.display = "none";
-		}
 
 		function init(){
 			// SURTOUT PAS DE var noeud ICI !!
             noeud = document.getElementById("popup");
-            refBtnCacher = document.getElementById("btn_cacher");
-            refBtnAfficher = document.getElementById("btn_afficher");
         }
 	</script>
 
@@ -109,8 +114,9 @@
 
 	<hr />
 
-	<input  id="btn_afficher"  type="button" value="Afficher popup" onclick="afficher_popup();"/>
-	<input id="btn_cacher" type="button" value="Cacher popup" onclick="cacher_popup();"/>
+	<input type="button" value="Afficher popup" onclick="toggle_popup(this);"/>
+	<!-- this dénote une référence vers l'élément cible de l'événement -->
+
 
 
 </body>
