@@ -32,12 +32,16 @@
 				display:none;
 				background-color:yellow;
 		}
+
+		#btn_cacher {display:none;}
 	</style>
 
 	<script type="text/javascript">
 
 
 		var noeud = null;
+		var refBtnCacher = null;
+		var refBtnAfficher = null;
 		// var noeud = document.getElementById("popup");	// var globale
 		// Ce code est interprété "à la volée"
 		// Le navigateur ne connait pas le popup d'id "popup"
@@ -54,17 +58,25 @@
 		// 2) appels à getElementById dans chaque fonction
 		// 3) placer ce code tout en bas de la page
 
+		//TODO: Afficher et cacher tour à tour les boutons pour qu'il n'y en ait toujours qu'un seul visible à la fois.
+
 		function afficher_popup() {
 			noeud.style.display = "block";
+            refBtnAfficher.style.display = "none";
+            refBtnCacher.style.display = "block";
         }
 
 		function cacher_popup() {
-			noeud.style.display = "none";;
+			noeud.style.display = "none";
+            refBtnAfficher.style.display = "block";
+            refBtnCacher.style.display = "none";
 		}
 
 		function init(){
 			// SURTOUT PAS DE var noeud ICI !!
             noeud = document.getElementById("popup");
+            refBtnCacher = document.getElementById("btn_cacher");
+            refBtnAfficher = document.getElementById("btn_afficher");
         }
 	</script>
 
@@ -97,8 +109,8 @@
 
 	<hr />
 
-	<input type="button" value="Afficher popup" onclick="afficher_popup();"/>
-	<input type="button" value="Cacher popup" onclick="cacher_popup();"/>
+	<input  id="btn_afficher"  type="button" value="Afficher popup" onclick="afficher_popup();"/>
+	<input id="btn_cacher" type="button" value="Cacher popup" onclick="cacher_popup();"/>
 
 
 </body>
