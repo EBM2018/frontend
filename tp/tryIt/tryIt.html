@@ -41,15 +41,30 @@
             if (val("cb")) {
                 actualiser();
             }
+        }
+        function decocher(contexte) {
+            // contexte est un objet représentant le contexte d'occurence de l'événement
+            // On peut y trouver les coordonnées de la souris, le code de la touche appuyée
+            // si les touches Ctrl, ALt, Shift étaient pressées au moment de l'evnt
+            // DANS QUELLES PROPRIETES ?
+            //console.log(contexte);
+            if (contexte.key == "Escape") val("cb",false);
+        }
 
+
+        // Le navigateur met en oeuvre une "propagation d'événements",
+        // qui fait qu'un survol du bouton sera détecté aussi au niveau de la banniere
+        function foo(contexte) {
+            console.log(contexte);
+            // la propriete srcElement permet d'obtenir une référence vers l'élément initialement survolé
         }
 
     </script>
 </head>
 
-<body onkeyup="decocher();">
+<body onkeyup="decocher(event);">
 <!-- 1) Couche structure ? -->
-<div id="banniere" >
+<div id="banniere" onmouseover="foo(event);">
     <input  type="button" value="Actualiser" onclick="actualiser();"/>
     <input onclick="actualiser();" type="checkbox" id="cb"/>
     <label for="cb">automatiquement</label>
