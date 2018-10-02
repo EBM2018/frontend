@@ -78,12 +78,38 @@
         }
     }
 
-    /*
-    function html() {}
-    function val() {}
-    function show() {}
-    function hide() {}
-    */
+
+    function html(refOrId) {
+        if (typeof refOrId == "string") {
+            refOrId  = document.getElementById(refOrId);
+        }
+    }
+    function val(refOrId) {
+        if (typeof refOrId == "string") {
+            refOrId  = document.getElementById(refOrId);
+        }
+    }
+
+    // cacher/afficher des balises
+    function show(refOrId,mode) {
+        // mode par défaut : "block"
+
+        if (typeof refOrId == "string") {
+            refOrId  = document.getElementById(refOrId);
+        }
+
+        if (mode != undefined) refOrId.style.display = mode;
+        else refOrId.style.display = "block";
+    }
+
+
+    function hide(refOrId) {
+        if (typeof refOrId == "string") {
+            refOrId  = document.getElementById(refOrId);
+        }
+        refOrId.style.display = "none";
+    }
+
 
 </script>
 
