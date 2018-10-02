@@ -32,20 +32,31 @@
     <script src="../utils/utils.js" ></script>
     <script>
         /* Couche interaction */
+        function actualiser() {
+            html("visuel",val("saisie"));
+        }
+
+        function majAuto() {
+            // On met à jour SI la case est cochée
+            if (val("cb")) {
+                actualiser();
+            }
+
+        }
 
     </script>
 </head>
 
-<body>
+<body onkeyup="decocher();">
 <!-- 1) Couche structure ? -->
 <div id="banniere" >
-    <input  type="button" value="Actualiser"/>
+    <input  type="button" value="Actualiser" onclick="actualiser();"/>
     <input type="checkbox" id="cb"/>
-    <label for="cb">automatiquement</label>
+    <label for="cb" onclick="actualiser();">automatiquement</label>
 </div>
 
 <div id="code">
-    <textarea id="saisie">saisie</textarea>
+    <textarea id="saisie" onkeyup="majAuto();">saisie</textarea>
 </div>
 <div id="visuel">visuel</div>
 
